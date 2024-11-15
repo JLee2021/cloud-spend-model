@@ -1,73 +1,81 @@
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 20px auto;
-  background: white;
+.main-container {
+  display: flex;
+  height: 80vh; /* Use 80% of the viewport */
+}
+
+.form-section {
+  flex: 1; /* 50% of the width */
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  background-color: #f4f4f9;
+}
+
+.charts-section {
+  flex: 2; /* 50% of the width */
+  padding: 20px;
+  overflow-y: auto;
 }
 
 h1,
-h2,
-h3 {
-  text-align: center;
+h2 {
   color: #333;
 }
 
-.documentation {
-  margin-bottom: 30px;
-}
-
-.inputs label {
+label {
   display: block;
-  margin: 10px 0 5px;
+  margin-top: 10px;
 }
 
-.inputs input,
-.inputs select {
+input {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.inputs button {
-  margin-top: 10px;
-  padding: 10px;
+button {
+  display: block;
+  padding: 10px 15px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
-.inputs button:hover {
+button:hover {
   background-color: #0056b3;
 }
 
-.filters {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.filters label,
-.filters select {
-  margin-right: 10px;
-  font-weight: bold;
-}
-
-.charts {
-  margin-top: 20px;
-}
-
 .chart {
-  margin-bottom: 40px;
-  height: 400px;
+  margin-bottom: 30px;
+  height: 300px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
 }
