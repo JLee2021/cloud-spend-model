@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FishSTOC Cost Forecast Dashboard</title>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>FishSTOC Cost Forecast Dashboard</h1>
+
+      <!-- Documentation -->
+      <div class="documentation">
+        <h2>What is this Model?</h2>
+        <p>
+          The FishSTOC Cost Forecast Dashboard predicts cloud costs for tenants
+          (FMCs) using Oracle Cloud Infrastructure (OCI). It allows dynamic
+          tenant addition with t-shirt sizing to estimate OCI utilization costs.
+        </p>
+
+        <h2>How it Works</h2>
+        <p>
+          Users add tenants, define their OCI usage with t-shirt sizes (Small,
+          Medium, Large, XL), and set overall budget parameters. The dashboard
+          generates forecasts using visualizations to analyze spend
+          distribution, trends, and comparisons.
+        </p>
+
+        <h2>Inputs and Outputs</h2>
+        <p><strong>Inputs:</strong></p>
+        <ul>
+          <li>Annual Budget: Total budget allocated for cloud services.</li>
+          <li>
+            Platform Admin Costs: Fixed monthly cost for managing the platform.
+          </li>
+          <li>Tenants: Dynamically added tenants with t-shirt sizing.</li>
+        </ul>
+        <p><strong>Outputs:</strong></p>
+        <ul>
+          <li>Spend Distribution (Pie Chart): Displays spend by tenant.</li>
+          <li>
+            Quarterly and Monthly Forecast (Column Chart): Shows spend over
+            time.
+          </li>
+          <li>
+            Spend Trends (Line Chart): Illustrates actual vs. projected spend.
+          </li>
+          <li>
+            Budget Status (Gauge Chart): Compares spend to budget per tenant.
+          </li>
+          <li>
+            Tenant Spend Comparison (Bar Chart): Compares tenant spend in
+            absolute values or percentages.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Input Form -->
+      <div class="inputs">
+        <h2>Adjust Inputs</h2>
+        <form id="inputForm">
+          <label>Annual Budget ($):</label>
+          <input type="number" id="annualBudget" value="1200000" required />
+
+          <label>Platform Admin Costs ($/month):</label>
+          <input type="number" id="adminCost" value="10000" required />
+
+          <div id="tenantInputs">
+            <h3>Tenants</h3>
+            <div id="tenantsContainer"></div>
+            <button type="button" id="addTenantButton">Add Tenant</button>
+          </div>
+
+          <button type="submit">Update Forecast</button>
+        </form>
+      </div>
+
+      <!-- Filters and Controls -->
+      <div class="filters">
+        <h3>Filters</h3>
+        <label for="tenantFilter">Filter by Tenant:</label>
+        <select id="tenantFilter">
+          <option value="all">All Tenants</option>
+        </select>
+      </div>
+
+      <!-- Visualizations -->
+      <div class="charts">
+        <h2>Visualizations</h2>
+        <div id="pieChart" class="chart"></div>
+        <div id="columnChart" class="chart"></div>
+        <div id="lineChart" class="chart"></div>
+        <div id="gaugeChart" class="chart"></div>
+        <div id="barChart" class="chart"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
