@@ -174,12 +174,3 @@ The **FishSTOC Cost Forecast Dashboard** is a dynamic, web-based tool for foreca
 4.  **Custom Resource Pricing:**
 
     - Allow users to input custom pricing for OCI services.
-
----
-
-## **Support**
-
-For questions or issues, contact:
-
-- **Email:** support@fishstoc-dashboard.com
-- **GitHub Issues:** [Submit an issue](https://github.com/fishstoc/fishstoc-dashboard/issues)
