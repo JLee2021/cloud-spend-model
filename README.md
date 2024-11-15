@@ -1,176 +1,128 @@
 # **FishSTOC Cost Forecast Dashboard**
 
-The **FishSTOC Cost Forecast Dashboard** is a dynamic, web-based tool for forecasting and analyzing Oracle Cloud Infrastructure (OCI) costs for tenants. It allows users to:
-
-- Dynamically add tenants with OCI resource usage based on t-shirt sizing (Small, Medium, Large, XL).
-- Calculate and visualize both tenant-specific and platform-wide costs.
-- Analyze spending trends over time and compare against budget allocations.
+The **FishSTOC Cost Forecast Dashboard** is a web-based tool for forecasting and analyzing Oracle Cloud Infrastructure (OCI) costs. It provides dynamic tools for managing tenants (FMCs), calculating platform cost distributions, and visualizing cloud spend trends. This version includes preconfigured tenants with editable budgets and OCI usage, dynamic tenant addition, and a responsive layout split between input forms and visualizations.
 
 ---
 
 ## **Features**
 
-- **Dynamic Tenant Addition:** Add tenants (e.g., FMC-1, FMC-2) with resource consumption defined by t-shirt sizing.
-- **Platform Costs Integration:** Incorporates fixed monthly platform costs for managing the OCI platform.
-- **Interactive Visualizations:**
-  - **Pie Chart:** Distribution of cloud spend across tenants and platform costs.
-  - **Column Chart:** Quarterly and monthly forecasted spend for tenants and platform costs.
-  - **Line Chart:** Trends in monthly spend (tenant-specific and platform-wide).
-  - **Gauge Chart:** Budget utilization for tenants and platform costs.
-  - **Bar Chart:** Horizontal comparison of tenant spend.
-- **Filters and Controls:**
-  - Filter visualizations by date range or tenant.
-  - Automatically adjusts charts based on user inputs.
+### **Dynamic Tenant Management**
+
+- Preconfigured tenants (FMC-1 through FMC-5) with customizable budgets and OCI usage.
+- Add new tenants dynamically with user-defined budgets and resource usage.
+
+### **Platform Cost Distribution**
+
+- Automatically distribute platform costs evenly among tenants.
+- Each tenant's total cost includes both their OCI usage and platform cost share.
+
+### **Visualizations**
+
+1.  **Pie Chart**: Displays the overall distribution of cloud spend across tenants and platform costs.
+2.  **Stacked Bar Chart**: Shows quarterly spend trends, including tenant-specific and platform costs.
+3.  **Fiscal View**: Summarizes total tenant costs, platform costs, and overall cloud spend.
+4.  **Tenant Financial Summary**:
+    - **Budget**: Allocated budget for each tenant.
+    - **Projected Spend**: Forecasted cost based on OCI usage.
+    - **Platform Cost Share**: Tenant's share of the platform costs.
+    - **Total Cost**: Combined OCI usage and platform cost.
+    - **Surplus**: Budget remaining after total costs.
+
+### **Responsive Layout**
+
+- Input form is displayed on the **left side of the screen**.
+- Visualizations and fiscal summaries are displayed on the **right side of the screen**.
+- Both sections use **80% of the viewport height** dynamically.
 
 ---
 
 ## **How It Works**
 
-1.  **Input Parameters:** Users specify the annual budget, platform costs, and dynamically add tenants with their OCI usage.
-2.  **Cost Calculation:**
-    - **Tenant Costs:** Determined by t-shirt size and multiplied by the forecast period (e.g., 3 months).
-    - **Platform Costs:** Fixed monthly costs multiplied by the forecast period.
-3.  **Visualization:** The model generates dynamic charts to help analyze spend distribution, trends, and budget utilization.
-4.  **Summary Table:** Summarizes total tenant costs, platform costs, and remaining budget.
+1.  **Input Tenant Details:**
+
+    - Use the left-hand form to adjust platform admin costs and tenant details.
+    - Modify preconfigured tenants (FMC-1 through FMC-5) or add new ones dynamically.
+
+2.  **Forecast Costs:**
+
+    - Tenant costs are calculated based on OCI usage:
+      - **Compute:** $0.025/vCPU/hour.
+      - **Block Storage:** $0.025/GB/month.
+      - **Object Storage:** $0.03/GB/month.
+      - **Networking:** $0.05/GB.
+      - **Database:** $2.50/hour.
+    - Platform costs are evenly distributed among all tenants.
+
+3.  **Visualize Results:**
+
+    - **Pie Chart:** View the overall spend distribution.
+    - **Stacked Bar Chart:** Track tenant and platform spend quarterly.
+    - **Fiscal Summary:** Analyze total cloud spend and remaining budget.
+    - **Tenant Financial Summary:** Review tenant-specific metrics.
 
 ---
 
-## **Assumptions**
+## **Preconfigured Tenants**
 
-1.  **T-Shirt Sizing for Tenants:**
-    - Small (S): $500/month
-    - Medium (M): $1,000/month
-    - Large (L): $2,000/month
-    - XL: $4,000/month
-2.  **Platform Costs:** Fixed costs, e.g., $10,000/month.
-3.  **Forecast Period:** 3 months (one fiscal quarter).
-4.  **Annual Budget Allocation:** Covers tenant and platform costs.
+The model starts with five preconfigured tenants. These can be edited or replaced dynamically.
 
----
-
-## **Inputs**
-
-### 1\. **Global Parameters**
-
-| Parameter                | Description                              | Example Value |
-| ------------------------ | ---------------------------------------- | ------------- |
-| **Annual Budget**        | Total budget for the fiscal year.        | `$1,200,000`  |
-| **Platform Admin Costs** | Monthly cost to manage the OCI platform. | `$10,000`     |
-
-### 2\. **Tenants**
-
-- **Name:** Custom tenant name (e.g., `FMC-1`, `FMC-2`).
-- **T-Shirt Size:** Defines OCI resource usage:
-  - **S:** Small (`$500/month`)
-  - **M:** Medium (`$1,000/month`)
-  - **L:** Large (`$2,000/month`)
-  - **XL:** Extra Large (`$4,000/month`)
+| **FMC** | **Budget ($)** | **Compute (vCPUs)** | **Block Storage (GB)** | **Object Storage (GB)** | **Networking (GB)** | **Database Instances** |
+| ------- | -------------- | ------------------- | ---------------------- | ----------------------- | ------------------- | ---------------------- |
+| FMC-1   | 120,000        | 10                  | 200                    | 100                     | 500                 | 2                      |
+| FMC-2   | 150,000        | 15                  | 300                    | 200                     | 800                 | 3                      |
+| FMC-3   | 180,000        | 20                  | 400                    | 300                     | 1000                | 1                      |
+| FMC-4   | 100,000        | 5                   | 100                    | 50                      | 200                 | 2                      |
+| FMC-5   | 90,000         | 8                   | 150                    | 75                      | 300                 | 1                      |
 
 ---
 
-## **Outputs**
+## **How to Use**
 
-### 1\. **Visualizations**
+### **Getting Started**
 
-#### a. **Pie Chart**
+1.  Open the dashboard in your browser.
+2.  Adjust the **Platform Admin Costs ($/month)** in the form on the left side.
+3.  Modify existing tenants or click **Add Tenant** to create new ones.
+4.  Click **Update Forecast** to generate the latest calculations and visualizations.
 
-- **Purpose:** Shows the distribution of total spend across tenants and platform costs.
-- **Key Features:**
-  - Highlights tenant-specific costs.
-  - Separates platform costs for comparison.
-  - Hover-over tooltips display percentages and absolute values.
+### **Visualizations**
 
-#### b. **Column Chart**
-
-- **Purpose:** Displays quarterly spend for each tenant and platform costs.
-- **Key Features:**
-  - Grouped columns for tenant and platform costs.
-  - Clearly compares tenant contributions to total costs.
-
-#### c. **Line Chart**
-
-- **Purpose:** Tracks trends in monthly spend for tenants and platform costs.
-- **Key Features:**
-  - Differentiates actual vs. projected spend using distinct line styles.
-  - Combines tenant and platform trends into a single view.
-
-#### d. **Gauge Chart**
-
-- **Purpose:** Indicates budget utilization for tenants and platform costs.
-- **Key Features:**
-  - Uses green, yellow, and red zones to visualize budget performance.
-  - Displays percentages of budget used for tenants and platform costs.
-
-#### e. **Bar Chart**
-
-- **Purpose:** Compares tenant spend in absolute terms or percentages.
-- **Key Features:**
-  - Horizontal bars sorted by spend (descending).
-  - Toggle feature for absolute vs. percentage comparison.
-
----
-
-### 2\. **Summary Table**
-
-| Category               | Description                                    |
-| ---------------------- | ---------------------------------------------- |
-| **Total Tenant Costs** | Sum of tenant spend over the forecast period.  |
-| **Platform Costs**     | Total platform spend over the forecast period. |
-| **Total Costs**        | Sum of tenant and platform costs.              |
-| **Remaining Budget**   | Budget left after accounting for all costs.    |
-
----
-
-## **How to Use the Dashboard**
-
-1.  **Adjust Global Parameters:**
-
-    - Set the annual budget and platform admin costs.
-
-2.  **Add Tenants:**
-
-    - Click "Add Tenant" to input a tenant name and t-shirt size.
-    - Repeat to add multiple tenants.
-
-3.  **Update Forecast:**
-
-    - Click "Update Forecast" to calculate and visualize costs.
-
-4.  **Filter Visualizations:**
-
-    - Use filters to focus on specific tenants or time periods.
-
-5.  **Analyze Outputs:**
-
-    - Review charts and the summary table for insights into spending trends, budget utilization, and tenant contributions.
+- **Pie Chart**: Highlights the distribution of costs across tenants and platform costs.
+- **Stacked Bar Chart**: Tracks quarterly spend per tenant and platform.
+- **Fiscal Summary Table**: Summarizes overall cloud spend.
+- **Tenant Financial Summary**: Details each tenant's financial metrics, including surplus and remaining budget.
 
 ---
 
 ## **Technical Details**
 
-### **Frameworks and Tools**
+### **Frameworks and Libraries**
 
-- **Google Charts API:** For interactive and responsive visualizations.
-- **HTML/CSS/JavaScript:** For frontend structure and styling.
-- **Dynamic Interactivity:** Real-time chart updates based on user inputs.
+- **Google Charts API**: Interactive visualizations (Pie Chart, Stacked Bar Chart).
+- **HTML/CSS/JavaScript**: Frontend structure, styling, and logic.
+
+### **Form and Layout**
+
+- Input forms for tenants are positioned on the left.
+- Graphs and summaries are displayed on the right.
+
+### **Cost Calculation**
+
+1.  **OCI Usage Costs**:
+    - Compute cost = `vCPUs × $0.025/hour × 730 hours`.
+    - Block/Object Storage cost = `GB × $0.025 or $0.03/month`.
+    - Networking cost = `GB × $0.05`.
+    - Database cost = `instances × $2.50/hour × 730 hours`.
+2.  **Platform Costs**:
+    - Evenly distributed among all tenants.
 
 ---
 
 ## **Future Enhancements**
 
-1.  **Toggle Options:**
-
-    - Switch between quarterly and monthly forecasts in the column chart.
-    - Add absolute vs. percentage toggle in the bar chart.
-
-2.  **Export Feature:**
-
-    - Enable export of visualizations and summary table to PDF or CSV.
-
-3.  **Expanded Forecast Periods:**
-
-    - Support for 6-month or 12-month forecasts.
-
-4.  **Custom Resource Pricing:**
-
-    - Allow users to input custom pricing for OCI services.
+1.  **Custom Platform Cost Distribution**:
+    - Allow tenants to specify their share percentage of platform costs.
+2.  **Detailed Historical Data Integration**:
+    - Include actual spend trends for more accurate forecasting.
+3.  **Export Options**:
+    - Enable CSV or PDF export of fiscal summaries and tenant reports.
